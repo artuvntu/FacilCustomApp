@@ -1,0 +1,16 @@
+PODS:
+  - FacilCustomApp (0.1.0)
+
+DEPENDENCIES:
+  - FacilCustomApp (from `../`)
+
+EXTERNAL SOURCES:
+  FacilCustomApp:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FacilCustomApp: ce79c32d8bb28a44968efcf7ce15ac96d4094f83
+
+PODFILE CHECKSUM: cc15bd18bb1b3619f2a19c34b01611d5e0790b79
+
+COCOAPODS: 1.11.3

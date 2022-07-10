@@ -1,0 +1,6 @@
+use_frameworks!
+target 'FacilCustomApp_Tests' do
+  pod 'FacilCustomApp', :path => '../'
+  
+  
+end
