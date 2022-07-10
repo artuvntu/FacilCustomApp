@@ -19,17 +19,19 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
 I continue working add more features and structure to this pod.
+Some featues added by now are
+ - Extension on UIView allow to you add anchors quickly
                        DESC
 
-  s.homepage         = 'https://github.com/Arturo/FacilCustomApp'
+  s.homepage         = 'https://github.com/artuvntu/FacilCustomApp'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Arturo' => 'vardumotica@gmail.com' }
-  s.source           = { :git => 'https://github.com/Arturo/FacilCustomApp.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/artuvntu/FacilCustomApp.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '15.5'
-
+  s.swift_versions = "5"
   s.source_files = 'FacilCustomApp/Classes/**/*'
   
   # s.resource_bundles = {
