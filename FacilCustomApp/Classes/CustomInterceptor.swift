@@ -11,14 +11,14 @@ import Alamofire
 class CustomInterceptor: RequestInterceptor {
     
     var shouldBeToken = false
-    
+    let token = "Dummy"
     init(shouldBeToken: Bool) {
         self.shouldBeToken = shouldBeToken
     }
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
-        if shouldBeToken, let token = SecureManager.shared.token {
+        if shouldBeToken {
             urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         completion(.success(urlRequest))

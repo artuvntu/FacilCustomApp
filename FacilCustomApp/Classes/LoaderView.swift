@@ -37,11 +37,11 @@ class LoaderView: UIView{
         
         loadingView.addSubview(actInd)
         
-        actInd.anchor(top: loadingView.topAnchor, leading: loadingView.leadingAnchor, bottom: loadingView.bottomAnchor, trailing: loadingView.trailingAnchor, padding: .AllSame(value: 8))
+        actInd.anchor(top: loadingView.topAnchor, leading: loadingView.leadingAnchor, bottom: loadingView.bottomAnchor, trailing: loadingView.trailingAnchor, padding: .init(top: 8, left: 8, bottom: 8, right: 8))
         actInd.anchor(size: CGSize(width: 80, height: 80))
         addSubview(loadingView)
         
-        loadingView.anchor(centerY: centerYAnchor, centerX: centerXAnchor)
+        loadingView.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
     }
     
     

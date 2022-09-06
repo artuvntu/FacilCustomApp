@@ -15,7 +15,7 @@ extension UIImageView {
         }
     }
     static func enableToken() {
-        let token = SecureManager.shared.token ?? ""
+        let token = "Dummy"
         SDWebImageDownloader.shared.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     }
     

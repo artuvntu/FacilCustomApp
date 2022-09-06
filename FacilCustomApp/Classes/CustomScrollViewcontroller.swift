@@ -31,7 +31,7 @@ class CustomScrollViewController: CustomViewController {
         let contentView = UIView()
         scrollView.addSubview(contentView)
         contentView.fillSuperView()
-        contentView.anchor(centerY: nil, centerX: scrollView.centerXAnchor)
+        contentView.anchor(centerX: scrollView.centerXAnchor, centerY: nil)
         self.contentView = contentView
     }
 }

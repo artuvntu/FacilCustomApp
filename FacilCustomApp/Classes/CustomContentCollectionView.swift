@@ -5,7 +5,7 @@
 //  Created by Arturo Ventura on 28/11/21.
 //
 
-class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell<Payload>>: CustomView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell<Payload>>: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         data.count
     }
@@ -30,7 +30,7 @@ class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell
     weak var collection: UICollectionView!
     
     init(onCellPress: ((Payload) -> Void)? = nil) {
-        super.init()
+        super.init(frame: .zero)
         backgroundColor = .white
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width - 16

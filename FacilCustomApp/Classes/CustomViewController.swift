@@ -22,11 +22,6 @@ class CustomViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func onError(code:Int?, data:ErrorModel?) {
-    }
-    
-    
-    
     func retry() {
     }
     
@@ -100,7 +95,7 @@ class CustomViewController: UIViewController {
         
         let loader = LoaderView()
         view.addSubview(loader)
-        loader.anchor(centerY: view.centerYAnchor, centerX: view.centerXAnchor)
+        loader.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor)
         loader.anchor(size: CGSize(width: view.frame.width, height: view.frame.height))
         
         loader.startIndicator()

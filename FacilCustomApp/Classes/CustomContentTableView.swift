@@ -7,14 +7,14 @@
 
 import UIKit
 
-class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payload>>: CustomView, UITableViewDataSource, UITableViewDelegate, CustomTableType {
+class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payload>>: UIView, UITableViewDataSource, UITableViewDelegate {
     var data: [Payload] = []
     var onCellPress: ((Payload) -> Void)?
     weak var constraintHeight: NSLayoutConstraint?
     weak var tableView: UITableView!
     
     required init(onCellPress: ((Payload) -> Void)?) {
-        super.init()
+        super.init(frame: .zero)
         self.onCellPress = onCellPress
         translatesAutoresizingMaskIntoConstraints = false
         let constraintHeight = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)

@@ -1,16 +1,31 @@
 PODS:
-  - FacilCustomApp (0.1.0)
+  - Alamofire (5.6.1)
+  - FacilCustomApp (0.0.3):
+    - Alamofire (~> 5.4)
+    - SDWebImage (~> 5.0)
+  - SDWebImage (5.13.0):
+    - SDWebImage/Core (= 5.13.0)
+  - SDWebImage/Core (5.13.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.4)
   - FacilCustomApp (from `../`)
+  - SDWebImage (~> 5.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SDWebImage
 
 EXTERNAL SOURCES:
   FacilCustomApp:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FacilCustomApp: ce79c32d8bb28a44968efcf7ce15ac96d4094f83
+  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  FacilCustomApp: 5d62f46a4d8bc72270f19eed00c38c65d86ea42e
+  SDWebImage: 0327043dbb9533e75f2eff8445b3df0f2ceca6ac
 
-PODFILE CHECKSUM: cc15bd18bb1b3619f2a19c34b01611d5e0790b79
+PODFILE CHECKSUM: 54f3a7fb1db79dff30acf08248c8d3779a1e9513
 
 COCOAPODS: 1.11.3
