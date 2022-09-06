@@ -40,5 +40,7 @@ Some featues added by now are
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Alamofire', '~> 5.4'
+  s.dependency 'SDWebImage', '~> 5.0'
+  
 end
