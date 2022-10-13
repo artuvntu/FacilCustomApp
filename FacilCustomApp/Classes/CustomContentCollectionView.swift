@@ -5,31 +5,31 @@
 //  Created by Arturo Ventura on 28/11/21.
 //
 
-class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell<Payload>>: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+public class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell<Payload>>: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         data.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Cell
         cell.fillData(data: data[indexPath.row])
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onCellPress?(data[indexPath.row])
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
         collectionView.layoutSubviews()
         constraintHeight.constant = collectionView.contentSize.height
     }
     
-    var data: [Payload] = []
-    var onCellPress: ((Payload) -> Void)?
-    weak var constraintHeight: NSLayoutConstraint!
-    weak var collection: UICollectionView!
+    public var data: [Payload] = []
+    public var onCellPress: ((Payload) -> Void)?
+    public weak var constraintHeight: NSLayoutConstraint!
+    public weak var collection: UICollectionView!
     
-    init(onCellPress: ((Payload) -> Void)? = nil) {
+    public init(onCellPress: ((Payload) -> Void)? = nil) {
         super.init(frame: .zero)
         backgroundColor = .white
         let screenSize = UIScreen.main.bounds
@@ -60,19 +60,19 @@ class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell
     
     
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fillData(data: [Payload]) {
+    public func fillData(data: [Payload]) {
         self.data = data
         collection.reloadData()
     }
     
 
 }
-class CustomContentCollectionViewCell<Payload>: UICollectionViewCell {
-    func fillData(data: Payload) {
+public class CustomContentCollectionViewCell<Payload>: UICollectionViewCell {
+    public func fillData(data: Payload) {
         fatalError("fillData(data:) has not been implemented")
     }
 }

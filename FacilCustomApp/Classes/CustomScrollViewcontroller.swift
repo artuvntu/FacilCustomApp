@@ -7,13 +7,13 @@
 
 import UIKit
 
-class CustomScrollViewController: CustomViewController {
+open class CustomScrollViewController: CustomViewController {
     weak var scrollView: UIScrollView!
     weak var contentView: UIView!
     weak var topContraint: NSLayoutConstraint!
 
     
-    override func loadView() {
+    override public func loadView() {
         super.loadView()
         //        Scrollview
         let scrollView = UIScrollView()

@@ -8,20 +8,21 @@
 import Foundation
 import Alamofire
 
-typealias DummyCodable = [String: String]
-typealias SuccessClosure<T: Decodable> = ((T) -> Void)?
-typealias SuccessClosureCode<T: Decodable> = ((Int?, T) -> Void)?
-typealias ErrorClosure<T: Decodable> = ((Int?, T?) -> Void)?
-fileprivate let Nulo = Optional<String>.none
-class RequestManager {
+public typealias DummyCodable = [String: String]
+public typealias SuccessClosure<T: Decodable> = ((T) -> Void)?
+public typealias SuccessClosureCode<T: Decodable> = ((Int?, T) -> Void)?
+public typealias ErrorClosure<T: Decodable> = ((Int?, T?) -> Void)?
+public let RequestManagerNulo = Optional<String>.none
+
+open class RequestManager {
     
-    static let shared = RequestManager()
+    public static let shared = RequestManager()
     
     lazy var session: Session = { AF }()
     let boundary = UUID().uuidString
     var modifier: Session.RequestModifier? = nil
     
-    func make<Out:Decodable, Err: Decodable, InBody: Encodable>(url:URLConvertible, method: HTTPMethod, headers: HTTPHeaders?, body: InBody?, shouldBeToken: Bool, successClosure: SuccessClosure<Out>, errorClosure: ErrorClosure<Err>) {
+    public func make<Out:Decodable, Err: Decodable, InBody: Encodable>(url:URLConvertible, method: HTTPMethod, headers: HTTPHeaders?, body: InBody?, shouldBeToken: Bool, successClosure: SuccessClosure<Out>, errorClosure: ErrorClosure<Err>) {
         func response(data: DataResponse<Out, AFError> ) {
             print(data.debugDescription)
             switch data.result {
@@ -43,7 +44,7 @@ class RequestManager {
             .responseDecodable(of: Out.self, decoder: decoder, completionHandler: response(data:))
     }
     
-    func makeCode<Out:Decodable, Err: Decodable, InBody: Encodable>(url:URLConvertible, method: HTTPMethod, headers: HTTPHeaders?, body: InBody?, shouldBeToken: Bool, successClosure: SuccessClosureCode<Out>, errorClosure: ErrorClosure<Err>) {
+    public func makeCode<Out:Decodable, Err: Decodable, InBody: Encodable>(url:URLConvertible, method: HTTPMethod, headers: HTTPHeaders?, body: InBody?, shouldBeToken: Bool, successClosure: SuccessClosureCode<Out>, errorClosure: ErrorClosure<Err>) {
         func response(data: DataResponse<Out, AFError> ) {
             print(data.debugDescription)
             switch data.result {
@@ -64,7 +65,7 @@ class RequestManager {
         }).responseDecodable(of: Out.self, decoder: decoder, completionHandler: response(data:))
     }
     
-    func makeMutipartCode<Out:Decodable, Err: Decodable>(url:URLConvertible, method: HTTPMethod, headers: HTTPHeaders?, body: [String:URL]?, shouldBeToken: Bool, successClosure: SuccessClosureCode<Out>, errorClosure: ErrorClosure<Err>) {
+    public func makeMutipartCode<Out:Decodable, Err: Decodable>(url:URLConvertible, method: HTTPMethod, headers: HTTPHeaders?, body: [String:URL]?, shouldBeToken: Bool, successClosure: SuccessClosureCode<Out>, errorClosure: ErrorClosure<Err>) {
         func response(data: DataResponse<Out, AFError> ) {
             print(data.debugDescription)
             switch data.result {

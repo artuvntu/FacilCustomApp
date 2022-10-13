@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FacilCustomApp'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'Some clases and extensions useful for fast and easy creations apps.'
 
 # This description is used to generate tags and improve search results.

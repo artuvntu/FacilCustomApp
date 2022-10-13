@@ -7,19 +7,19 @@
 import UIKit
 
 @IBDesignable
-class SpinnerView : UIView {
+open class SpinnerView : UIView {
 
-    override var layer: CAShapeLayer {
+    override public var layer: CAShapeLayer {
         get {
             return super.layer as! CAShapeLayer
         }
     }
 
-    override class var layerClass: AnyClass {
+    override public class var layerClass: AnyClass {
         return CAShapeLayer.self
     }
 
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         layer.fillColor = nil
         layer.strokeColor = UIColor.black.cgColor
@@ -27,7 +27,7 @@ class SpinnerView : UIView {
         setPath()
     }
 
-    override func didMoveToWindow() {
+    override public func didMoveToWindow() {
         animate()
     }
 

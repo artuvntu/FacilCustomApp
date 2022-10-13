@@ -7,13 +7,13 @@
 
 import UIKit
 
-class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payload>>: UIView, UITableViewDataSource, UITableViewDelegate {
+open class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payload>>: UIView, UITableViewDataSource, UITableViewDelegate {
     var data: [Payload] = []
     var onCellPress: ((Payload) -> Void)?
     weak var constraintHeight: NSLayoutConstraint?
     weak var tableView: UITableView!
     
-    required init(onCellPress: ((Payload) -> Void)?) {
+    required public init(onCellPress: ((Payload) -> Void)?) {
         super.init(frame: .zero)
         self.onCellPress = onCellPress
         translatesAutoresizingMaskIntoConstraints = false
@@ -32,57 +32,57 @@ class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payload>>
         self.tableView = tableView
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fillData(data: [Payload]) {
+    public func fillData(data: [Payload]) {
         self.data = data
         tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Cell
         cell.fillData(data: data[indexPath.row])
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         tableView.layoutSubviews()
         let newConstant =  tableView.contentSize.height
         constraintHeight?.constant = newConstant > 0 ? newConstant : 1
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let payload = data[indexPath.row]
         onCellPress?(payload)
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         nil
     }
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         0
     }
 }
 
-class CustomContentTableViewCell<Payload>: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+open class CustomContentTableViewCell<Payload>: UITableViewCell {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError()
     }
     
-    func fillData(data: Payload) {
+    public func fillData(data: Payload) {
         fatalError("fillData(data:) has not been implemented")
     }
 }

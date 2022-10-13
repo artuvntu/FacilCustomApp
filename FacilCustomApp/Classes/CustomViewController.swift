@@ -7,30 +7,30 @@
 
 import UIKit
 
-class CustomViewController: UIViewController {
+open class CustomViewController: UIViewController {
     
     weak var bottomConstraint: NSLayoutConstraint?
     
-    func hasTextField() -> Bool { false }
+    open func hasTextField() -> Bool { false }
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func retry() {
     }
     
-    override func loadView() {
+    open override func loadView() {
         super.loadView()
         view.backgroundColor = .white
     }
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         if hasTextField() {
             setupHideKeyboardOnTap()
             enableKeyBoardToggle()

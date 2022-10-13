@@ -8,24 +8,24 @@
 import UIKit
 
 
-class LoaderView: UIView{
+open class LoaderView: UIView{
     
     private lazy var actInd:SpinnerView = {
         let aiv = SpinnerView()
         return aiv
     }()
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
     
-    func commonInit(){
+    public func commonInit(){
         
         backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
@@ -45,11 +45,11 @@ class LoaderView: UIView{
     }
     
     
-    func startIndicator(){
+    public func startIndicator(){
         
     }
     
-    func stopIndicator() {
+    public func stopIndicator() {
         
     }
 }

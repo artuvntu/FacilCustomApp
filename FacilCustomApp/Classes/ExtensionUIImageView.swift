@@ -9,17 +9,17 @@ import UIKit
 import SDWebImage
 
 extension UIImageView {
-    func setImage(url:String?) {
+    public func setImage(url:String?) {
         if let url = url {
             sd_setImage(with: URL(string: url))
         }
     }
-    static func enableToken() {
+    static public func enableToken() {
         let token = "Dummy"
         SDWebImageDownloader.shared.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     }
     
-    static func disableToken() {
+    static public func disableToken() {
         SDWebImageDownloader.shared.setValue("", forHTTPHeaderField: "Authorization")
     }
 }
