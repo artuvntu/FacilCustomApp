@@ -9,7 +9,7 @@ import UIKit
 
 open class CustomViewController: UIViewController {
     
-    weak var bottomConstraint: NSLayoutConstraint?
+    public weak var bottomConstraint: NSLayoutConstraint?
     
     open func hasTextField() -> Bool { false }
     

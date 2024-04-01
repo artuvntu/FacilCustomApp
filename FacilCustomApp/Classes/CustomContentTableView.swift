@@ -8,27 +8,33 @@
 import UIKit
 
 open class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payload>>: UIView, UITableViewDataSource, UITableViewDelegate {
-    var data: [Payload] = []
-    var onCellPress: ((Payload) -> Void)?
-    weak var constraintHeight: NSLayoutConstraint?
-    weak var tableView: UITableView!
-    
-    required public init(onCellPress: ((Payload) -> Void)?) {
+    public var data: [Payload] = []
+    public var onCellPress: ((Payload) -> Void)?
+    public weak var constraintHeight: NSLayoutConstraint?
+    public weak var tableView: UITableView!
+    public var getHeader: ((Int)->UIView?)?
+    public var getFooter: ((Int)->UIView?)?
+    required public init(onCellPress: ((Payload) -> Void)? = nil, nestedScroll: Bool = false, getHeader: ((Int)->UIView?)? = nil, getFooter: ((Int)->UIView?)? = nil) {
+        self.getHeader = getHeader
+        self.getFooter = getFooter
         super.init(frame: .zero)
         self.onCellPress = onCellPress
-        translatesAutoresizingMaskIntoConstraints = false
-        let constraintHeight = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
-        constraintHeight.isActive = true
-        self.constraintHeight = constraintHeight
-        
+        if nestedScroll {
+            translatesAutoresizingMaskIntoConstraints = false
+            let constraintHeight = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
+            constraintHeight.isActive = true
+            self.constraintHeight = constraintHeight
+        }
         let tableView = UITableView()
-        addSubview(tableView)
-        tableView.fillSuperView()
+        addSubviewFill(tableView)
         tableView.bounces = false
         tableView.register(Cell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.delaysContentTouches = false
+        
         self.tableView = tableView
     }
     
@@ -36,39 +42,46 @@ open class CustomContentTableView<Payload, Cell: CustomContentTableViewCell<Payl
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func fillData(data: [Payload]) {
+    open func fillData(data: [Payload]) {
         self.data = data
         tableView.reloadData()
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Cell
         cell.fillData(data: data[indexPath.row])
         return cell
     }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         tableView.layoutSubviews()
         let newConstant =  tableView.contentSize.height
         constraintHeight?.constant = newConstant > 0 ? newConstant : 1
     }
     
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let payload = data[indexPath.row]
         onCellPress?(payload)
     }
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-    public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    open func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         nil
     }
-    public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    open func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         0
+    }
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        getHeader?(section)
+    }
+    
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        getFooter?(section)
     }
 }
 
@@ -82,7 +95,7 @@ open class CustomContentTableViewCell<Payload>: UITableViewCell {
         fatalError()
     }
     
-    public func fillData(data: Payload) {
+    open func fillData(data: Payload) {
         fatalError("fillData(data:) has not been implemented")
     }
 }

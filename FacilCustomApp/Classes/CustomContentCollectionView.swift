@@ -5,21 +5,21 @@
 //  Created by Arturo Ventura on 28/11/21.
 //
 
-public class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell<Payload>>: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+open class CustomContentCollectionView<Payload, Cell: CustomContentCollectionViewCell<Payload>>: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         data.count
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Cell
         cell.fillData(data: data[indexPath.row])
         return cell
     }
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onCellPress?(data[indexPath.row])
     }
     
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
+    open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath){
         collectionView.layoutSubviews()
         constraintHeight.constant = collectionView.contentSize.height
     }
@@ -64,15 +64,15 @@ public class CustomContentCollectionView<Payload, Cell: CustomContentCollectionV
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func fillData(data: [Payload]) {
+    open func fillData(data: [Payload]) {
         self.data = data
         collection.reloadData()
     }
     
 
 }
-public class CustomContentCollectionViewCell<Payload>: UICollectionViewCell {
-    public func fillData(data: Payload) {
+open class CustomContentCollectionViewCell<Payload>: UICollectionViewCell {
+    open func fillData(data: Payload) {
         fatalError("fillData(data:) has not been implemented")
     }
 }
