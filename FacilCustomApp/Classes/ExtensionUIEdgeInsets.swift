@@ -15,4 +15,10 @@ public extension UIEdgeInsets {
     static func axisSame(vertical: CGFloat, horizontal: CGFloat) -> UIEdgeInsets {
         UIEdgeInsets(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
     }
+    
+    func setLeft(_ value: CGFloat) -> UIEdgeInsets {
+        var response = self
+        response.left = value
+        return response
+    }
 }

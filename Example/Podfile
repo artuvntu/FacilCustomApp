@@ -1,7 +1,7 @@
 use_frameworks!
 target 'FacilCustomApp_Tests' do
   pod 'FacilCustomApp', :path => '../'
-  pod 'Alamofire', '~> 5.4'
-  pod 'SDWebImage', '~> 5.0'
+  # pod 'Alamofire', '~> 5.4'
+  # pod 'SDWebImage', '~> 5.0'
   
 end

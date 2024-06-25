@@ -89,10 +89,15 @@ open class CustomContentTableViewCell<Payload>: UITableViewCell {
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        self.setupView(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     required public init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    open func setupView(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        // Setup here view
     }
     
     open func fillData(data: Payload) {

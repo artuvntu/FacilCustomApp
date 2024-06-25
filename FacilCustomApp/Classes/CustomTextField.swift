@@ -56,6 +56,10 @@ open class CustomTextField: UIView, UITextFieldDelegate {
         return shouldChangeCharacters
     }
     
+    open func textFieldDidBeginEditing(_ textField: UITextField) {
+        // NO OP
+    }
+    
 }
 
 public protocol CustomTextFieldListener: NSObject {

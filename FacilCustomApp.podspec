@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FacilCustomApp'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = 'Some clases and extensions useful for fast and easy creations apps.'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ Some featues added by now are
   s.source           = { :git => 'https://github.com/artuvntu/FacilCustomApp.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '15.5'
+  s.ios.deployment_target = '17.0'
   s.swift_versions = "5"
   s.source_files = 'FacilCustomApp/Classes/**/*'
   
@@ -40,7 +40,7 @@ Some featues added by now are
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Alamofire', '~> 5.4'
-  s.dependency 'SDWebImage', '~> 5.0'
+  # s.dependency 'Alamofire', '~> 5.4'
+  # s.dependency 'SDWebImage', '~> 5.0'
   
 end
